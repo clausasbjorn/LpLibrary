@@ -4,7 +4,7 @@ open Microsoft.Azure.Documents;
 open Microsoft.Azure.Documents.Client;
 open Microsoft.Azure.Documents.Linq;
 
-let endpoint = "<YOU ENDPOINT URL>"
+let endpoint = "<YOUR ENDPOINT URL>"
 let authKey = "<YOUR AUTH KEY>"
 let client =
     new DocumentClient(new Uri(endpoint), authKey)
@@ -139,9 +139,7 @@ let deleteEmbeddedQuery name = async {
         client.CreateDocumentQuery<Document>(collection.DocumentsLink, spec).AsEnumerable()
     
     match delete with
-    | [] ->
-        printfn "Naah" 
-        return ()
+    | [] -> return ()
     | document :: _ -> 
         document.SelfLink 
         |> client.DeleteDocumentAsync 
